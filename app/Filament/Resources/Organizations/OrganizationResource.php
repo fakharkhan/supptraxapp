@@ -20,6 +20,8 @@ class OrganizationResource extends Resource
 {
     protected static ?string $model = Organization::class;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
     public static function getNavigationGroup(): ?string
