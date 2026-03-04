@@ -13,6 +13,20 @@ class ListClaims extends ListRecords
 
     protected ?string $heading = 'Board';
 
+    public function mount(): void
+    {
+        parent::mount();
+
+        if (request()->routeIs('filament.organization.resources.claims.board')) {
+            $location = request()->route('location');
+            if ($location !== null) {
+                $this->tableFilters = array_merge($this->tableFilters ?? [], [
+                    'location_id' => ['value' => (int) $location],
+                ]);
+            }
+        }
+    }
+
     protected function getHeaderActions(): array
     {
         return [

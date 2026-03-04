@@ -69,14 +69,14 @@ class OrganizationPanelProvider extends PanelProvider
                 StatusesDetails::class,
             ])
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-                $claimsUrl = ClaimResource::getUrl('index');
+                $claimsIndexUrl = ClaimResource::getUrl('index');
                 $locationChildren = Location::query()
                     ->orderBy('name')
                     ->get()
                     ->map(fn (Location $location) => NavigationItem::make($location->name)
-                        ->url($claimsUrl . '?' . http_build_query([
-                            'filters' => ['location_id' => ['value' => $location->id]],
-                        ]))
+                        ->url(ClaimResource::getUrl('board', ['location' => $location->id]))
+                        ->isActiveWhen(fn () => request()->routeIs('filament.organization.resources.claims.board')
+                            && (int) request()->route('location') === $location->id)
                     )
                     ->all();
 
@@ -118,7 +118,7 @@ class OrganizationPanelProvider extends PanelProvider
                             ->items([
                                 NavigationItem::make('Claims')
                                     ->icon(Heroicon::OutlinedClipboardDocumentList)
-                                    ->url($claimsUrl)
+                                    ->url($claimsIndexUrl)
                                     ->isActiveWhen(fn () => request()->routeIs('filament.organization.resources.claims.*'))
                                     ->childItems($locationChildren),
                             ]),

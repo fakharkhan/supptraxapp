@@ -186,8 +186,9 @@ class ClaimResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListClaims::route('/'),
             'create' => CreateClaim::route('/create'),
+            'index' => ListClaims::route('/'),
+            'board' => ListClaims::route('/board/{location?}'),
             'edit' => EditClaim::route('/{record}/edit'),
         ];
     }
