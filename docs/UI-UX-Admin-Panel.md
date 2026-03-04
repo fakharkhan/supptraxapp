@@ -1,51 +1,102 @@
 # UI/UX Document: SupptraxApp Admin Panel
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Date:** March 4, 2026  
 **Related:** [PRD-supptraxapp.md](./PRD-supptraxapp.md)  
-**Framework:** Laravel 12 + Filament 5
+**Framework:** Laravel 12 + Filament 5  
+**Reference:** Supptrax Admin Panel (admin.supptrax.com) screenshots
 
 ---
 
-## Note on Screenshots
+## Screenshot Reference
 
-**The `supptrax-data/Orignal/Admin` folder was reviewed but contains no screenshots.** It holds only CSV data files:
-- `organizations.csv`, `organization_users.csv`, `organization_details.csv`
-- `subscriptions.csv`, `invoices.csv`, `sales_representatives.csv`, `states.csv`
+Screenshots from the Supptrax Admin Panel are in the **supptrax-data** workspace at **`Orignal/Admin/ScreenShots/`** and serve as the visual reference for this document.
 
-This UI/UX document is derived from:
-1. The PRD functional requirements
-2. The Admin and Client data schemas in supptrax-data
-3. Filament 5 conventions and standard admin UX patterns
+| Screenshot | Path | Description |
+|------------|------|-------------|
+| Dashboard | `supptrax-data/Orignal/Admin/ScreenShots/dashboard.png` | Main dashboard with Total Organizations, Claims per organization, Top 3 Organizations |
+| Organizations | `supptrax-data/Orignal/Admin/ScreenShots/organizations.png` | Organizations table (name, sales person, status, actions) |
+| Invoices | `supptrax-data/Orignal/Admin/ScreenShots/invoices.png` | Invoices table (org, invoice #, date, amount, status, download) |
+| Subscriptions | `supptrax-data/Orignal/Admin/ScreenShots/subscriptions.png` | Subscriptions table (org, created, duration, model, status) |
+| Sales Representative | `supptrax-data/Orignal/Admin/ScreenShots/sales-representative.png` | Sales reps table (name, leads, trial period, link, actions) |
 
-**When screenshots become available**, add them to `supptrax-data/Orignal/Admin/Screenshots/` and update this document with visual references.
+**Additional screenshots** (subfolders): `Dashboard/`, `Organizations/`, `Invoices/`, `Subscriptions/`, `SalesRepresentative/`
 
 ---
 
-## 1. Design Principles
+## 1. Supptrax Admin Panel – Reference Design (from Screenshots)
+
+The Supptrax Admin Panel (admin.supptrax.com) provides the visual and interaction reference for SupptraxApp. Key elements observed:
+
+### 1.1 Layout
+
+- **Left sidebar:** Fixed navigation; dark charcoal background; logo at top
+- **Main content:** Full-width; page title top-left; utility icons top-right
+- **Header utilities:** Moon (dark/light toggle), Bell (notifications), User avatar
+
+### 1.2 Navigation (Sidebar)
+
+| Item | Icon | Active State |
+|------|------|--------------|
+| Dashboard | Grid/squares | Orange highlight + orange icon |
+| Organizations | Group/people | — |
+| Subscriptions | Document/credit card | — |
+| Invoices | Dollar sign in circle | — |
+| Sales representative | Person/search | — |
+
+### 1.3 Dashboard Widgets
+
+- **Total Organizations:** Large number (e.g. 110), "View all" button (orange), icon
+- **Claims per organization:** List of orgs with claim count + "Manage" button per row
+- **Top 3 Organizations:** Ranked list (1–3) with orange highlight for #1; shows claims, New/Working/Closed breakdown
+
+### 1.4 Table Pages (Organizations, Invoices, Subscriptions, Sales Reps)
+
+- **Header:** Page title + primary action (e.g. "Create Organization", "Create Sales Representative")
+- **Search:** Magnifying glass + placeholder "Search" (Sales Reps page)
+- **Table:** Uppercase column headers; row actions via ellipsis (⋯) or "Download" link
+- **Status colors:** Green = Active/Paid; Orange = Inactive/Warning; Grey = Canceled/Unpaid
+- **Pagination:** Numbered circles (1, 2, 3); prev/next arrows; current page in orange
+
+### 1.5 Color Palette
+
+| Element | Color |
+|---------|-------|
+| Background | Dark grey/charcoal |
+| Sidebar | Slightly lighter dark grey |
+| Accent / Primary | Orange |
+| Active nav / CTA buttons | Orange |
+| Success (Active, Paid) | Green |
+| Warning (Inactive) | Orange |
+| Text primary | White |
+| Text secondary | Light grey |
+
+---
+
+## 2. Design Principles
 
 | Principle | Description |
 |-----------|-------------|
 | **Clarity** | Tables and forms should be scannable; primary actions visible |
-| **Consistency** | Use Filament defaults; align with existing panel (Amber primary) |
+| **Consistency** | Match Supptrax Admin reference: dark theme, orange accent, side nav |
 | **Efficiency** | Minimize clicks for common tasks (import, filter, export) |
 | **Responsive** | Desktop-first (1024px+); mobile usable for read-only views |
 
 ---
 
-## 2. Layout Structure
+## 3. Layout Structure
 
-### 2.1 Shell Layout
+### 3.1 Shell Layout
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  [Logo]  SupptraxApp Admin                    [Search] [Avatar]  │
+│  [Logo]  SupptraxApp Admin         [Moon] [Bell] [Avatar]       │
 ├──────────┬──────────────────────────────────────────────────────┤
+│          │  Page Title                    [Primary Action]        │
+│ Sidebar  ├──────────────────────────────────────────────────────┤
 │          │                                                        │
-│ Sidebar  │  Main Content Area                                    │
-│          │  (Dashboard / Resource List / Form / etc.)            │
-│ - Dash   │                                                        │
-│ - Claims │                                                        │
+│ - Dash   │  Main Content Area                                    │
+│ - Claims │  (Dashboard / Resource List / Form / etc.)             │
 │ - Comms  │                                                        │
 │ - Import │                                                        │
 │ - ...    │                                                        │
@@ -53,7 +104,7 @@ This UI/UX document is derived from:
 └──────────┴──────────────────────────────────────────────────────┘
 ```
 
-### 2.2 Sidebar Navigation
+### 3.2 Sidebar Navigation
 
 | Item | Icon | Route | Notes |
 |------|------|-------|-------|
@@ -70,9 +121,9 @@ This UI/UX document is derived from:
 
 ---
 
-## 3. Page Specifications
+## 4. Page Specifications
 
-### 3.1 Dashboard
+### 4.1 Dashboard
 
 **Purpose:** At-a-glance overview of imported data.
 
@@ -92,9 +143,11 @@ This UI/UX document is derived from:
 
 **Empty state:** When no data: "No data yet. Import CSV files to get started." + CTA to Import.
 
+**Reference:** See `supptrax-data/Orignal/Admin/ScreenShots/dashboard.png` for card layout and "View all" / "Manage" buttons.
+
 ---
 
-### 3.2 Claim Comments (List)
+### 4.2 Claim Comments (List)
 
 **Purpose:** Browse, search, filter, and export scraped comments.
 
@@ -127,9 +180,11 @@ This UI/UX document is derived from:
 
 **Empty state:** "No claim comments. Import CSV files from supptrax-data."
 
+**Reference:** See `supptrax-data/Orignal/Admin/ScreenShots/organizations.png` for table layout, ellipsis actions, status colors.
+
 ---
 
-### 3.3 Claim Comments (View Modal)
+### 4.3 Claim Comments (View Modal)
 
 **Purpose:** Read full comment without leaving list.
 
@@ -145,7 +200,7 @@ This UI/UX document is derived from:
 
 ---
 
-### 3.4 Claims (List)
+### 4.4 Claims (List)
 
 **Purpose:** Browse and filter claims from claims_board.
 
@@ -173,9 +228,11 @@ This UI/UX document is derived from:
 
 **Pagination:** 25 per page.
 
+**Reference:** See `supptrax-data/Orignal/Admin/ScreenShots/organizations.png` for table layout, pagination.
+
 ---
 
-### 3.5 Import
+### 4.5 Import
 
 **Purpose:** Ingest CSV files from supptrax-data.
 
@@ -202,7 +259,7 @@ This UI/UX document is derived from:
 
 ---
 
-### 3.6 Reference Data (Statuses, Adjusters, Insurance Companies, Locations)
+### 4.6 Reference Data (Statuses, Adjusters, Insurance Companies, Locations)
 
 **List view:** Filament Table with columns matching CSV schema.  
 **CRUD (Phase 4):** Standard Filament Create/Edit forms.  
@@ -210,27 +267,27 @@ This UI/UX document is derived from:
 
 ---
 
-## 4. Component Specifications
+## 5. Component Specifications
 
-### 4.1 Tables
+### 5.1 Tables
 
 - **Striped rows** (optional): Alternate row background for readability
 - **Sticky header:** Header remains visible on scroll
 - **Bulk actions:** Not required for MVP
 - **Column toggle:** Optional for Claims (many columns)
 
-### 4.2 Forms (Import, future CRUD)
+### 5.2 Forms (Import, future CRUD)
 
 - **Labels** above fields
 - **Help text** for file path: "Path to CSV directory (e.g. ../supptrax-data/Orignal/Client/Data)"
 - **Validation:** Inline errors; prevent submit if invalid
 
-### 4.3 Modals
+### 5.3 Modals
 
 - **View Comment:** Max height 70vh; scrollable body
 - **Import:** Max width 500px; tabs if multiple import types
 
-### 4.4 Notifications
+### 5.4 Notifications
 
 - **Success:** "X claim comments imported successfully."
 - **Error:** "Import failed: [reason]"
@@ -238,15 +295,19 @@ This UI/UX document is derived from:
 
 ---
 
-## 5. Visual Design
+## 6. Visual Design
 
-### 5.1 Theme (Filament)
+### 6.1 Theme (from Supptrax Admin Screenshots)
 
-- **Primary color:** Amber (existing `AdminPanelProvider`)
-- **Dark mode:** Support if Filament theme allows
-- **Typography:** Filament defaults (Inter or system font)
+- **Primary/accent:** Orange (buttons, active nav, highlights)
+- **Background:** Dark grey/charcoal
+- **Sidebar:** Slightly lighter dark grey
+- **Dark mode:** Default (supptrax admin is dark); light mode via moon toggle
+- **Typography:** Clean sans-serif; white for primary text, light grey for secondary
 
-### 5.2 Status Colors (Claims)
+**Filament:** Configure Amber primary color to match Supptrax orange; enable dark mode if available.
+
+### 6.2 Status Colors (Claims)
 
 Map status abbreviations to Filament/Badge colors:
 
@@ -259,7 +320,9 @@ Map status abbreviations to Filament/Badge colors:
 | NONE | gray |
 | Others | warning or default |
 
-### 5.3 Spacing & Density
+**Supptrax reference:** Green = Active/Paid; Orange = Inactive/Warning; Grey = Canceled/Unpaid.
+
+### 6.3 Spacing & Density
 
 - **Table row height:** Comfortable (min 44px tap target)
 - **Card padding:** 1.5rem
@@ -267,28 +330,32 @@ Map status abbreviations to Filament/Badge colors:
 
 ---
 
-## 6. Interaction Patterns
+## 7. Interaction Patterns
 
-### 6.1 Search
+### 7.1 Search
 
 - **Global search (optional):** Search across Claim Comments and Claims
 - **Resource search:** Debounced 300ms; search on Author, Text (comments); Claimant, Location, etc. (claims)
 
-### 6.2 Filters
+**Reference:** See `supptrax-data/Orignal/Admin/ScreenShots/sales-representative.png` for search bar placement.
+
+### 7.2 Filters
 
 - **Persist:** Optional—remember last filters in session
 - **Clear:** "Clear filters" link when any filter active
 - **Badge:** Show active filter count on filter trigger
 
-### 6.3 Export
+### 7.3 Export
 
 - **Format:** CSV
 - **Scope:** Current filtered results (respect filters)
 - **Filename:** `claim_comments_export_YYYY-MM-DD.csv`
 
+**Reference:** See `supptrax-data/Orignal/Admin/ScreenShots/invoices.png` for "Download" link-style action.
+
 ---
 
-## 7. Accessibility
+## 8. Accessibility
 
 - **Keyboard:** All actions reachable via keyboard
 - **Focus:** Visible focus ring on interactive elements
@@ -297,44 +364,43 @@ Map status abbreviations to Filament/Badge colors:
 
 ---
 
-## 8. Admin Data (Orignal/Admin) – Future Scope
+## 9. Platform Admin (Orignal/Admin) – Future Scope
 
-The `Orignal/Admin` CSV files suggest a **platform admin** layer (organizations, subscriptions, invoices, sales reps). This is out of scope for the current PRD but can extend the Admin Panel later:
+The Supptrax Admin screenshots show the **platform admin** UI. These map to `supptrax-data/Orignal/Admin` CSV data:
 
-| Data | Potential UI |
-|------|---------------|
-| Organizations | List + detail; filter by status |
-| Organization Users | Nested under Organization or separate list |
-| Subscriptions | List with status, dates, model |
-| Invoices | List with amount, status, link to PDF |
-| Sales Representatives | List; link to subscriptions |
+| Screen | Data | Columns / Actions |
+|--------|------|-------------------|
+| **Organizations** | `organizations.csv` | Organization Name, Sales Person, Status, Actions (⋯) |
+| **Subscriptions** | `subscriptions.csv` | Organization Name, Created, Subscription Duration, Model, Status |
+| **Invoices** | `invoices.csv` | Organization Name, Invoice Number, Date, Amount, Status, Download |
+| **Sales Representative** | `sales_representatives.csv` | Name, Number of Leads, Trial Period, Link, Actions (⋯) |
 
-When adding these, follow the same layout and component patterns above.
+**Screenshots:** `supptrax-data/Orignal/Admin/ScreenShots/dashboard.png`, `organizations.png`, `invoices.png`, `subscriptions.png`, `sales-representative.png`
 
----
-
-## 9. Screenshot Placeholder
-
-When screenshots are added, place them in:
-
-```
-supptrax-data/Orignal/Admin/Screenshots/
-├── 01-dashboard.png
-├── 02-claim-comments-list.png
-├── 03-claim-comments-view.png
-├── 04-claims-list.png
-├── 05-import.png
-└── 06-reference-data.png
-```
-
-Update this section with inline references, e.g.:
-
-> ![Dashboard](../supptrax-data/Orignal/Admin/Screenshots/01-dashboard.png)
+**Subfolders:** `Dashboard/`, `Organizations/`, `Invoices/`, `Subscriptions/`, `SalesRepresentative/` (create forms, row menus, etc.)
 
 ---
 
-## 10. Revision History
+## 10. Screenshot Index
+
+| File | Description |
+|------|-------------|
+| `supptrax-data/Orignal/Admin/ScreenShots/dashboard.png` | Main dashboard |
+| `supptrax-data/Orignal/Admin/ScreenShots/organizations.png` | Organizations table |
+| `supptrax-data/Orignal/Admin/ScreenShots/invoices.png` | Invoices table |
+| `supptrax-data/Orignal/Admin/ScreenShots/subscriptions.png` | Subscriptions table |
+| `supptrax-data/Orignal/Admin/ScreenShots/sales-representative.png` | Sales reps table |
+| `Organizations/create-organization.png` | Create organization form |
+| `Organizations/organization-row-menu.png` | Row actions menu |
+| `Organizations/organization-details-click.png` | Organization details |
+| `Invoices/invoice-download-clicked.png` | Download action |
+| `SalesRepresentative/create-sales-representative.png` | Create sales rep form |
+
+---
+
+## 11. Revision History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | 1.0 | 2026-03-04 | Initial UI/UX doc; no screenshots in Orignal/Admin |
+| 1.1 | 2026-03-04 | Added Supptrax Admin reference from ScreenShots; dark theme, orange accent; screenshot index |
