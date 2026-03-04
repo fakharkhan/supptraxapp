@@ -129,6 +129,7 @@ class ClaimSeeder extends Seeder
                     'adjuster_id' => $adjuster?->id,
                     'claim_handler' => $data['claim_handler'],
                     'client' => $data['client'],
+                    'settlement_amount' => in_array($data['status'] ?? '', ['SS', 'CBC']) ? fake()->randomFloat(2, 1500, 8500) : null,
                 ],
             );
         }

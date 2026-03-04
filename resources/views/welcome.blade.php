@@ -25,7 +25,7 @@
                 <a href="{{ config('app.client_url', 'https://supptrax.com') }}" class="px-6 py-2.5 rounded-md font-medium bg-amber-500 text-white hover:bg-amber-600 transition-colors">
                     Sign Up
                 </a>
-                <a href="{{ url('/admin/login') }}" class="px-6 py-2.5 rounded-md font-medium border border-amber-500/50 text-white hover:bg-amber-500/10 hover:border-amber-500 transition-colors">
+                <a href="{{ url('/organization/login') }}" class="px-6 py-2.5 rounded-md font-medium border border-amber-500/50 text-white hover:bg-amber-500/10 hover:border-amber-500 transition-colors">
                     Login
                 </a>
             </nav>
@@ -42,7 +42,7 @@
                 Supptrax provides 24/7, up-to-the-minute visibility on all your roofing supplemental jobs, helping ensure that timely contacts are made, and claims are closed within a defined period. What's more, our analytics allow you to see the average dollar amount as well as the number of settled claims so you can better manage your business today and into the future.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="{{ url('/admin/login') }}" class="px-8 py-3.5 rounded-md font-medium border border-amber-500/50 text-white hover:bg-amber-500/10 hover:border-amber-500 transition-colors">
+                <a href="{{ url('/organization/login') }}" class="px-8 py-3.5 rounded-md font-medium border border-amber-500/50 text-white hover:bg-amber-500/10 hover:border-amber-500 transition-colors">
                     Login
                 </a>
                 <a href="{{ config('app.client_url', 'https://supptrax.com') }}" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-md font-medium text-white border border-amber-500/50 hover:bg-amber-500/10 hover:border-amber-500 transition-colors">

@@ -19,12 +19,14 @@ class Claim extends Model
         'adjuster_phone',
         'claim_handler',
         'client',
+        'settlement_amount',
     ];
 
     protected $casts = [
         'claim_date' => 'date',
         'submission_date' => 'date',
         'funding_date' => 'date',
+        'settlement_amount' => 'decimal:2',
     ];
 
     public function location(): BelongsTo

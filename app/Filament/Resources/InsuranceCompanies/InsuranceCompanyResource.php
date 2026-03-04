@@ -9,6 +9,7 @@ use App\Filament\Resources\InsuranceCompanies\Schemas\InsuranceCompanyForm;
 use App\Filament\Resources\InsuranceCompanies\Tables\InsuranceCompaniesTable;
 use App\Models\InsuranceCompany;
 use BackedEnum;
+use Filament\Facades\Filament;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -24,7 +25,16 @@ class InsuranceCompanyResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
+        if (Filament::getCurrentPanel()?->getId() === 'organization') {
+            return null;
+        }
+
         return 'Reference Data';
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return Filament::getCurrentPanel()?->getId() === 'organization' ? 1 : null;
     }
 
     public static function form(Schema $schema): Schema

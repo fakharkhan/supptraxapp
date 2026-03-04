@@ -9,6 +9,7 @@ use App\Filament\Resources\Locations\Schemas\LocationForm;
 use App\Filament\Resources\Locations\Tables\LocationsTable;
 use App\Models\Location;
 use BackedEnum;
+use Filament\Facades\Filament;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -24,7 +25,16 @@ class LocationResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
+        if (Filament::getCurrentPanel()?->getId() === 'organization') {
+            return null;
+        }
+
         return 'Reference Data';
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return Filament::getCurrentPanel()?->getId() === 'organization' ? 2 : null;
     }
 
     public static function form(Schema $schema): Schema
