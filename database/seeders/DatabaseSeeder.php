@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SalesRepresentativeSeeder::class,
             OrganizationSeeder::class,
             OrganizationUserSeeder::class,
+            SubscriptionSeeder::class,
         ]);
     }
 }

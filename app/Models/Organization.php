@@ -41,4 +41,9 @@ class Organization extends Model
     {
         return $this->hasMany(OrganizationUser::class);
     }
+
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }
