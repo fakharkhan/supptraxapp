@@ -15,7 +15,20 @@ class OrganizationUser extends Model
         'organization_id',
         'user_name',
         'user_email',
+        'type',
+        'is_chaser',
+        'is_closer',
+        'claims_count',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_chaser' => 'boolean',
+            'is_closer' => 'boolean',
+            'claims_count' => 'integer',
+        ];
+    }
 
     public function organization(): BelongsTo
     {

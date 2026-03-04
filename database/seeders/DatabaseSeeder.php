@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,15 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed a basic test user for login.
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-        ]);
-
         $this->call([
             SalesRepresentativeSeeder::class,
             OrganizationSeeder::class,
+        ]);
+
+        $csa = Organization::where('name', 'CSA')->first();
+
+        User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'organization_id' => $csa?->id,
+        ]);
+
+        $this->call([
             OrganizationUserSeeder::class,
             SubscriptionSeeder::class,
             InvoiceSeeder::class,

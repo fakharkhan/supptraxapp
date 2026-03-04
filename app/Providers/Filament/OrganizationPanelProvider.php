@@ -3,6 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Organization\Pages\Dashboard;
+use App\Filament\Organization\Pages\Details;
+use App\Filament\Organization\Pages\Statuses;
+use App\Filament\Organization\Pages\Subscription;
+use App\Filament\Organization\Pages\Users;
 use App\Filament\Organization\Widgets\AverageClosingTimeWidget;
 use App\Filament\Organization\Widgets\ClosedClaimsChartWidget;
 use App\Filament\Organization\Widgets\ClosedClaimsLineChartWidget;
@@ -57,6 +61,10 @@ class OrganizationPanelProvider extends PanelProvider
             ])
             ->pages([
                 Dashboard::class,
+                Details::class,
+                Users::class,
+                Statuses::class,
+                Subscription::class,
             ])
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                 $claimsUrl = ClaimResource::getUrl('index');
@@ -79,9 +87,35 @@ class OrganizationPanelProvider extends PanelProvider
                     ->group(
                         NavigationGroup::make('My Organization')
                             ->collapsible()
+                            ->collapsed()
+                            ->items([
+                                NavigationItem::make('Details')
+                                    ->icon(Heroicon::OutlinedQueueList)
+                                    ->url(Details::getUrl())
+                                    ->isActiveWhen(fn () => request()->routeIs('filament.organization.pages.details'))
+                                    ->sort(1),
+                                NavigationItem::make('Users')
+                                    ->icon(Heroicon::OutlinedUsers)
+                                    ->url(Users::getUrl())
+                                    ->isActiveWhen(fn () => request()->routeIs('filament.organization.pages.users'))
+                                    ->sort(2),
+                                NavigationItem::make('Statuses')
+                                    ->icon(Heroicon::OutlinedAdjustmentsHorizontal)
+                                    ->url(Statuses::getUrl())
+                                    ->isActiveWhen(fn () => request()->routeIs('filament.organization.pages.statuses'))
+                                    ->sort(3),
+                                NavigationItem::make('Subscription')
+                                    ->icon(Heroicon::OutlinedCreditCard)
+                                    ->url(Subscription::getUrl())
+                                    ->isActiveWhen(fn () => request()->routeIs('filament.organization.pages.subscription'))
+                                    ->sort(4),
+                            ]),
+                    )
+                    ->group(
+                        NavigationGroup::make()
                             ->items([
                                 NavigationItem::make('Claims')
-                                    ->icon(Heroicon::OutlinedDocumentText)
+                                    ->icon(Heroicon::OutlinedClipboardDocumentList)
                                     ->url($claimsUrl)
                                     ->isActiveWhen(fn () => request()->routeIs('filament.organization.resources.claims.*'))
                                     ->childItems($locationChildren),
