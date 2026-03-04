@@ -56,6 +56,11 @@ class InvoiceResource extends Resource
         return false;
     }
 
+    public static function canEdit($record): bool
+    {
+        return false;
+    }
+
     public static function getPages(): array
     {
         return [
