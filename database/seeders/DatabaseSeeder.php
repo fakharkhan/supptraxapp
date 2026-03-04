@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             SalesRepresentativeSeeder::class,
+            OrganizationSeeder::class,
+            OrganizationUserSeeder::class,
         ]);
     }
 }

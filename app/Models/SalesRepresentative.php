@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SalesRepresentative extends Model
 {
@@ -16,4 +17,9 @@ class SalesRepresentative extends Model
         'trial_period',
         'link',
     ];
+
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class);
+    }
 }

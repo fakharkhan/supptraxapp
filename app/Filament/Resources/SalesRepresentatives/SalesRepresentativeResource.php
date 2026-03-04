@@ -18,7 +18,12 @@ class SalesRepresentativeResource extends Resource
 {
     protected static ?string $model = SalesRepresentative::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Platform Admin';
+    }
 
     public static function form(Schema $schema): Schema
     {

@@ -98,6 +98,12 @@ class SalesRepresentativeSeeder extends Seeder
                 'trial_period' => 'None',
                 'link' => 'https://supptrax.com/subscriptions?n=MA67631d91bcb32',
             ],
+            [
+                'name' => 'Natalija Naumcevska',
+                'number_of_leads' => 0,
+                'trial_period' => 'None',
+                'link' => 'https://supptrax.com/subscriptions?n=NN0000000000000',
+            ],
         ];
 
         foreach ($records as $record) {
