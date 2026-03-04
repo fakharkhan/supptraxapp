@@ -22,3 +22,8 @@
 }
 
 @variant dark (&:where(.dark, .dark *));
+
+/* Supptrax Admin Panel – table header styling (uppercase per UI spec) */
+.fi-ta-header-cell {
+    text-transform: uppercase;
+}

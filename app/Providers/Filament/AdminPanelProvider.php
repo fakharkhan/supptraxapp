@@ -2,6 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\ClaimsPerOrganizationWidget;
+use App\Filament\Widgets\TopOrganizationsWidget;
+use App\Filament\Widgets\TotalOrganizationsWidget;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -10,9 +14,6 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use App\Filament\Widgets\ClaimsPerOrganizationWidget;
-use App\Filament\Widgets\TopOrganizationsWidget;
-use App\Filament\Widgets\TotalOrganizationsWidget;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -30,6 +31,12 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('SUPPTRAX')
+            ->brandLogo(asset('images/supptrax-logo.svg'))
+            ->darkModeBrandLogo(asset('images/supptrax-logo-white.svg'))
+            ->brandLogoHeight('1.25rem')
+            ->defaultThemeMode(ThemeMode::Dark)
+            ->sidebarWidth('280px')
             ->colors([
                 'primary' => Color::Amber,
             ])

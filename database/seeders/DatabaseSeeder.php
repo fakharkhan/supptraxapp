@@ -27,6 +27,11 @@ class DatabaseSeeder extends Seeder
             OrganizationUserSeeder::class,
             SubscriptionSeeder::class,
             InvoiceSeeder::class,
+            StateSeeder::class,
+            StatusSeeder::class,
+            LocationSeeder::class,
+            InsuranceCompanySeeder::class,
+            AdjusterSeeder::class,
         ]);
     }
 }

@@ -29,10 +29,10 @@ class OrganizationsTable
                     ->badge()
                     ->color(fn (?string $state): string => match ($state) {
                         'Active' => 'success',
-                        'Trialing' => 'info',
-                        'Inactive' => 'gray',
-                        'Canceled' => 'danger',
-                        'Unpaid' => 'warning',
+                        'Trialing' => 'warning',
+                        'Inactive' => 'warning',
+                        'Canceled' => 'gray',
+                        'Unpaid' => 'gray',
                         default => 'gray',
                     })
                     ->sortable()
