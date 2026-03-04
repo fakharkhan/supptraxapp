@@ -29,7 +29,7 @@ class SalesRepresentativesTable
                     ->sortable(),
                 TextColumn::make('link')
                     ->label('Link')
-                    ->url()
+                    ->url(fn (SalesRepresentative $record) => $record->link)
                     ->openUrlInNewTab()
                     ->limit(40),
             ])
