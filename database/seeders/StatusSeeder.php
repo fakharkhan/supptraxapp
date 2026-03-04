@@ -18,6 +18,8 @@ class StatusSeeder extends Seeder
             ['name' => 'None', 'abbreviation' => 'NONE', 'color' => 'Light Green', 'description' => 'The supplement has not clarified the salesperson or insurance status', 'sort_order' => 6],
             ['name' => 'Salesperson Review Required', 'abbreviation' => 'SRR', 'color' => 'Red', 'description' => 'The salesperson needs to look at a particular question or situation', 'sort_order' => 7],
             ['name' => 'Technical Reply Needed', 'abbreviation' => 'TRN', 'color' => 'Yellow', 'description' => 'The closers team needs to look at a particular question or situation', 'sort_order' => 8],
+            ['name' => 'Sent TRN', 'abbreviation' => 'STRN', 'color' => 'Teal', 'description' => 'Technical response needed has been addressed', 'sort_order' => 9],
+            ['name' => 'Cancelled By Contractor', 'abbreviation' => 'CBC', 'color' => 'Red', 'description' => 'Cancelled by contractor', 'sort_order' => 10],
         ];
 
         foreach ($statuses as $status) {

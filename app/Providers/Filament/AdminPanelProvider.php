@@ -4,6 +4,8 @@ namespace App\Providers\Filament;
 
 use App\Filament\Widgets\ClaimsPerOrganizationWidget;
 use App\Filament\Widgets\TopOrganizationsWidget;
+use App\Filament\Widgets\TotalClaimCommentsWidget;
+use App\Filament\Widgets\TotalClaimsWidget;
 use App\Filament\Widgets\TotalOrganizationsWidget;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
@@ -51,6 +53,8 @@ class AdminPanelProvider extends PanelProvider
                 TotalOrganizationsWidget::class,
                 ClaimsPerOrganizationWidget::class,
                 TopOrganizationsWidget::class,
+                TotalClaimCommentsWidget::class,
+                TotalClaimsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

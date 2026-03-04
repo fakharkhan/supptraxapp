@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
             LocationSeeder::class,
             InsuranceCompanySeeder::class,
             AdjusterSeeder::class,
+            BoardSeeder::class,
+            ClaimCommentSeeder::class,
+            ClaimSeeder::class,
         ]);
     }
 }

@@ -6,8 +6,6 @@ use App\Models\Invoice;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -72,8 +70,6 @@ class InvoicesTable
                     ->url(fn (Invoice $record): ?string => filled($record->file_path) ? asset('storage/' . $record->file_path) : null)
                     ->openUrlInNewTab()
                     ->visible(fn (Invoice $record): bool => filled($record->file_path)),
-                ViewAction::make(),
-                EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

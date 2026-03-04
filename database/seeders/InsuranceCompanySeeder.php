@@ -17,6 +17,11 @@ class InsuranceCompanySeeder extends Seeder
             ['name' => 'American Family (AMFAM)', 'location' => 'Wisconsin', 'phone_number' => '8006926326', 'email' => 'claimdocuments@afics.com', 'adjusters_count' => 48],
             ['name' => 'American Modern', 'location' => 'OH', 'phone_number' => '8003752075', 'email' => 'piclaims1@amig.com', 'adjusters_count' => 5],
             ['name' => 'American National', 'location' => 'NY', 'phone_number' => '4097634661', 'email' => 'claimsmail@americannational.com', 'adjusters_count' => 2],
+            ['name' => 'Erie', 'location' => 'PA', 'phone_number' => '8004580811', 'email' => 'claims@erieinsurance.com', 'adjusters_count' => 10],
+            ['name' => 'State Farm', 'location' => 'IL', 'phone_number' => '8007325246', 'email' => 'claims@statefarm.com', 'adjusters_count' => 50],
+            ['name' => 'Travelers', 'location' => 'CT', 'phone_number' => '8002524633', 'email' => 'claims@travelers.com', 'adjusters_count' => 30],
+            ['name' => 'Nationwide', 'location' => 'OH', 'phone_number' => '8004213535', 'email' => 'claims@nationwide.com', 'adjusters_count' => 25],
+            ['name' => 'USAA', 'location' => 'TX', 'phone_number' => '8005318722', 'email' => 'claims@usaa.com', 'adjusters_count' => 20],
         ];
 
         foreach ($companies as $company) {

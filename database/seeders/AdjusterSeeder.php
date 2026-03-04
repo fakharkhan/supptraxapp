@@ -18,6 +18,11 @@ class AdjusterSeeder extends Seeder
             ['name' => 'Cody Price', 'company_name' => 'AAA', 'email' => 'price.cody@ace.aaa.com', 'phone_number' => '8009228228'],
             ['name' => 'James Ehko', 'company_name' => 'Allstate', 'email' => 'ehko.james@allstate.com', 'phone_number' => '7248722281'],
             ['name' => 'Kirk Patrick', 'company_name' => 'Allstate', 'email' => 'kirkpatrick.loyd@allstate.com', 'phone_number' => '2147708470'],
+            ['name' => 'Aaron McCloud', 'company_name' => 'State Farm', 'email' => 'aaron.mccloud@statefarm.com', 'phone_number' => '6789353027'],
+            ['name' => 'Chad Barnes', 'company_name' => 'Erie', 'email' => 'chad.barnes@erieinsurance.com', 'phone_number' => '8148817825'],
+            ['name' => 'Cameron Lane', 'company_name' => 'Travelers', 'email' => 'cameron.lane@travelers.com', 'phone_number' => '4123896307'],
+            ['name' => 'Rick Pearson', 'company_name' => 'Nationwide', 'email' => 'rick.pearson@nationwide.com', 'phone_number' => '6148542022'],
+            ['name' => 'Tim Cullennen', 'company_name' => 'USAA', 'email' => 'tim.cullennen@usaa.com', 'phone_number' => '8009684456'],
         ];
 
         foreach ($adjusters as $data) {
