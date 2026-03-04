@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Status extends Model
 {
@@ -17,4 +18,9 @@ class Status extends Model
     protected $casts = [
         'sort_order' => 'integer',
     ];
+
+    public function claims(): HasMany
+    {
+        return $this->hasMany(Claim::class);
+    }
 }

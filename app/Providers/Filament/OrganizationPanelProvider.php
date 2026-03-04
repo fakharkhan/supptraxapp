@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Organization\Pages\Dashboard;
 use App\Filament\Organization\Pages\Details;
 use App\Filament\Organization\Pages\Statuses;
+use App\Filament\Organization\Pages\StatusesDetails;
 use App\Filament\Organization\Pages\Subscription;
 use App\Filament\Organization\Pages\Users;
 use App\Filament\Organization\Widgets\AverageClosingTimeWidget;
@@ -65,6 +66,7 @@ class OrganizationPanelProvider extends PanelProvider
                 Users::class,
                 Statuses::class,
                 Subscription::class,
+                StatusesDetails::class,
             ])
             ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
                 $claimsUrl = ClaimResource::getUrl('index');
@@ -73,7 +75,7 @@ class OrganizationPanelProvider extends PanelProvider
                     ->get()
                     ->map(fn (Location $location) => NavigationItem::make($location->name)
                         ->url($claimsUrl . '?' . http_build_query([
-                            'tableFilters' => ['location_id' => ['value' => $location->id]],
+                            'filters' => ['location_id' => ['value' => $location->id]],
                         ]))
                     )
                     ->all();
