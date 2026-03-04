@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             OrganizationSeeder::class,
             OrganizationUserSeeder::class,
             SubscriptionSeeder::class,
+            InvoiceSeeder::class,
         ]);
     }
 }
