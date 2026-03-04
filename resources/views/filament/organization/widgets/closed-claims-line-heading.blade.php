@@ -1,11 +1,11 @@
-<div class="flex items-start gap-8">
-    <div class="flex items-baseline gap-2">
-        <span class="text-3xl font-bold text-white">{{ $lastMonthCount }}</span>
-        <span class="text-xs text-gray-400">Closed Claims <span class="text-white font-semibold">last month</span></span>
-    </div>
-    <div class="h-8 w-px bg-gray-700"></div>
-    <div class="flex items-baseline gap-2">
-        <span class="text-3xl font-bold text-white">{{ $thisMonthCount }}</span>
-        <span class="text-xs text-gray-400">Closed Claims <span class="text-amber-500 font-semibold">this month</span></span>
-    </div>
-</div>
+<span style="display: inline-flex; align-items: baseline; gap: 1.5rem;">
+    <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
+        <span style="font-size: 1.875rem; font-weight: 700;">{{ $lastMonthCount }}</span>
+        <span style="font-size: 0.75rem; color: #9ca3af;">Closed Claims <span style="color: #fff; font-weight: 600;">last month</span></span>
+    </span>
+    <span style="width: 1px; height: 1.5rem; background: #374151; display: inline-block;"></span>
+    <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
+        <span style="font-size: 1.875rem; font-weight: 700;">{{ $thisMonthCount }}</span>
+        <span style="font-size: 0.75rem; color: #9ca3af;">Closed Claims <span style="color: #f59e0b; font-weight: 600;">this month</span></span>
+    </span>
+</span>
